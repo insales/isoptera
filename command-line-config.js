@@ -1,9 +1,5 @@
 module.exports = [
   {
-    name: 'mode',
-    type: String
-  },
-  {
     name: 'config',
     alias: 'c',
     type: String
