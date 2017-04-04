@@ -1,12 +1,12 @@
-var config = require('.internal/config')();
+var config = require('./.internal/config')();
 
-var bundler = require('.internal/browserify');
+var bundler = require('./.internal/browserify');
 var proxy = null;
 var bundle = bundler.init(config);
 
 
 if (config.proxy) {
-  proxy = require('.internal/browser-sync')(config);
+  proxy = require('./.internal/browser-sync')(config);
 }
 
 bundle
