@@ -1,0 +1,19 @@
+{
+  "name": "isoptera",
+  "version": "0.0.1",
+  "description": "builder for InSales plugins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "InSales"
+  ],
+  "author": "arohy",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "browserify": "^14.1.0",
+    "lodash": "^4.17.4"
+  }
+}
