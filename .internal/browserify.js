@@ -3,6 +3,8 @@ var fileSystem = require('fs');
 var browserify = require('browserify');
 var lodash = require('lodash');
 
+var getPath = require('./read-file').getPath;
+
 /**
  * @description
  * Подключаем плагины
@@ -14,7 +16,8 @@ var lodash = require('lodash');
  */
 function _bindPlugins (bundler, config) {
   lodash.forEach(config.plugins, function (module) {
-    bundler.plugin(require(module.name), module.options);
+    var _path = getPath([ 'node_modules', module.name ]);
+    bundler.plugin(require(_path), module.options);
   });
 
   return bundler;
@@ -30,8 +33,10 @@ function _bindPlugins (bundler, config) {
  * @return {Object} - пропатченный сборщик
  */
 function _bindTransforms (bundler, config) {
+
   lodash.forEach(config.transforms, function (module) {
-    bundler.transform(require(module.name), module.options);
+    var _path = getPath([ 'node_modules', module.name ]);
+    bundler.transform(require(_path), module.options);
   });
 
   return bundler;
@@ -52,6 +57,8 @@ module.exports.rebundle = function (bundle, config, proxy) {
 
 module.exports.init = function (options) {
   var _bundler = {};
+
+  console.log('>>', process.env.CWD, process.env.PWD);
 
   _bundler = browserify({
     entries: options.entry,

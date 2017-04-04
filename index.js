@@ -1,12 +1,12 @@
 var config = require('./.internal/config')();
 
 var bundler = require('./.internal/browserify');
-var proxy = null;
+var Proxy = require('./.internal/browser-sync')
 var bundle = bundler.init(config);
+var proxy;
 
-
-if (config.proxy) {
-  proxy = require('./.internal/browser-sync')(config);
+if (config.useProxy) {
+  proxy = Proxy(config);
 }
 
 bundle
@@ -15,7 +15,7 @@ bundle
   })
   .on('error', function () {
     // крашим процесс, если мы делаем сборку финальной версии
-    if (config.options.mode == 'dist') {
+    if (!config.useProxy) {
       process.exit(1);
     }
   });
