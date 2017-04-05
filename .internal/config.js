@@ -16,6 +16,7 @@ module.exports = function () {
   _config = lodash.merge(_options, readFile(_options.config));
   _config.entry = getPath(_config.source);
   _config.dist = getPath(_config.dist);
+  _config.useProxy = !!_config.proxy;
 
   return _config;
 };
