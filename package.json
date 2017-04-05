@@ -1,6 +1,6 @@
 {
   "name": "isoptera",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "builder for InSales plugins",
   "main": "index.js",
   "scripts": {
