@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:arohy/isoptera.git"
+    "url": "git://github.com/arohy/isoptera.git"
   },
   "author": "arohy",
   "license": "ISC",
