@@ -20,18 +20,24 @@
   "source": "path/to/entry.js",
   "dist": "path/to/dist/file.js",
 
-  "plugins": [
+  "bfPlugins": [
     {
       "name": "browserify-plugin-name",
       "options": "plugin options"
     }
   ],
-  "transforms": [
+  "bfTransforms": [
     {
       "name": "browserify-transform-name",
       "options": "transform options"
     }
   ],
-  "proxy": true
+  "useProxy": true,
+  "bs-plugins": [
+    {
+      "name": "browser-sync-plugin-name",
+      "options": "plugin options"
+    }
+  ]
 }
 ````

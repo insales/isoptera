@@ -15,8 +15,9 @@ var getPath = require('./read-file').getPath;
  * @return {Object} - пропатченный сборщик
  */
 function _bindPlugins (bundler, config) {
-  lodash.forEach(config.plugins, function (module) {
+  lodash.forEach(config.bfPlugins, function (module) {
     var _path = getPath([ 'node_modules', module.name ]);
+
     bundler.plugin(require(_path), module.options);
   });
 
@@ -34,8 +35,9 @@ function _bindPlugins (bundler, config) {
  */
 function _bindTransforms (bundler, config) {
 
-  lodash.forEach(config.transforms, function (module) {
+  lodash.forEach(config.bfTransforms, function (module) {
     var _path = getPath([ 'node_modules', module.name ]);
+
     bundler.transform(require(_path), module.options);
   });
 
@@ -55,20 +57,18 @@ module.exports.rebundle = function (bundle, config, proxy) {
   return;
 };
 
-module.exports.init = function (options) {
+module.exports.init = function (config) {
   var _bundler = {};
 
-  console.log('>>', process.env.CWD, process.env.PWD);
-
   _bundler = browserify({
-    entries: options.entry,
+    entries: config.entry,
     cache: {},
     packageCache: {},
     paths: [ './source' ]
   });
 
-  _bindPlugins(_bundler, options.config);
-  _bindTransforms(_bundler, options.config);
+  _bindPlugins(_bundler, config);
+  _bindTransforms(_bundler, config);
 
   return _bundler;
 };

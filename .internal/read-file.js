@@ -1,5 +1,9 @@
+var fs = require('fs');
+
 var path = require('path');
 var lodash = require('lodash');
+
+var yaml = require('js-yaml');
 
 /**
  * @description
@@ -31,10 +35,16 @@ function getPath (parts) {
  */
 function readFile (filePath) {
   var _path = getPath(filePath);
+  var _yamlTest = (/yaml$/);
   var _file = null;
 
   try {
-    _file = require(_path);
+    if (_yamlTest.test(_path)) {
+      _file = yaml.load(fs.readFileSync(_path, 'utf8'));
+    }
+    else {
+      _file = require(_path);
+    }
   }
   catch (err) {
     console.warn('no config file: ', _path);
