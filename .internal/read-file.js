@@ -15,12 +15,13 @@ var yaml = require('js-yaml');
  */
 function getPath (parts) {
   var _path = '';
+  var PWD = process.env.PWD || process.cwd();
 
   _path = lodash.chain(parts)
     .castArray()
     .reduce(function (result, part) {
       return path.join(result, part);
-    }, process.env.PWD)
+    }, PWD)
     .value();
 
   return _path;
