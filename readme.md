@@ -47,7 +47,7 @@ config
   isoptera.dist.yaml
 ````
 
-config/isoptera.dev.json
+config/isoptera.dev.yaml
 
 ````yaml
 source: source/index.js
