@@ -19,14 +19,15 @@
 source: 'path/to/entry.js'
 dist: 'path/to/dist/file.js'
 
-bfPlugins:
-  - name: 'browserify-plugin-name'
-    options: 'plugin options'
-bfTransforms:
-  - name: 'browserify-transform-name'
-    options: 'transform options'
-useProxy: true,
-bsPlugins:
-  - name: 'browser-sync-plugin-name'
-    options: 'plugin options'
+browserify:
+  - plugins
+    - name: 'browserify-plugin-name'
+      options: 'plugin options'
+
+  - transforms
+    - name: 'browserify-transform-name'
+      options: 'transform options'
+
+browserSync:
+  config
 ````
