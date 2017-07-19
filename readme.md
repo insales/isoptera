@@ -31,3 +31,70 @@ browserify:
 browserSync:
   config
 ````
+
+## Пример структуры проекта с `isoptera`
+
+````
+source/
+  index.js
+dist/
+  .gitkeep
+test/
+  .gitkeep
+package.json
+config
+  isoptera.dev.json
+  isoptera.dist.json
+````
+
+config/isoptera.dev.json
+
+````yaml
+source: source/index.js
+dist: test/test.module.js
+
+browserify:
+  plugins:
+    - name: watchify
+
+  transforms:
+    - name: eslintify
+      options:
+        passthrough: [ 'errors', 'warnings' ]
+    - name: scssify
+      options:
+        autoInject:
+          prepend: true
+          verbose: true
+        sass:
+          sourceMapEmbed: false
+          includePaths: ['node_modules']
+        postcss:
+          autoprefixer:
+            browsers: ['last 2 versions', '> 1%', 'IE >= 11']
+    - name: jstify
+      options:
+        engine: global
+    - name: nocommentify
+
+browserSync:
+  https: false
+  serveStatic: ['.']
+  rewriteRules:
+    - match: https://localhost/assets/test.module.js
+      replace: /test/test.module.js
+````
+
+В `package.json` настроить секцию `scripts`, например:
+
+````json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "node node_modules/isoptera -c config/isoptera.dev.yaml",
+  "dist": "node node_modules/isoptera -c config/isoptera.dist.yaml"
+}
+````
+
+и вызывать командами
+
+`npm run dev -- -s shop-tech-domain`
