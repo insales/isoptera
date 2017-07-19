@@ -43,8 +43,8 @@ test/
   .gitkeep
 package.json
 config
-  isoptera.dev.json
-  isoptera.dist.json
+  isoptera.dev.yaml
+  isoptera.dist.yaml
 ````
 
 config/isoptera.dev.json
